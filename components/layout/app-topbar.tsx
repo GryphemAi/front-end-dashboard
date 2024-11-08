@@ -1,5 +1,4 @@
 'use client';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { GalleryVerticalEnd } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';

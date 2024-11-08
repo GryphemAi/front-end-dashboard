@@ -1,13 +1,19 @@
-import PageContainer from '@/components/layout/page-container';
+import { Metadata } from 'next';
+import HomeView from './_components/home-view';
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
+
+export const metadata: Metadata = {
+  title: 'Homepage',
+  description: 'Selling cars homepage.'
+};
 
 export default async function Home() {
-  return (
-    <PageContainer scrollable>
-      <div className="space-y-2">
-        <div className="flex items-center justify-between space-y-2">
-          <h2 className="text-2xl font-bold tracking-tight">Homepage 👋</h2>
-        </div>
-      </div>
-    </PageContainer>
-  );
+  const session = await auth();
+
+  if (!session?.user) {
+    return redirect('/signin');
+  }
+
+  return <HomeView />;
 }

@@ -50,7 +50,6 @@ import * as React from 'react';
 import { Breadcrumbs } from '../breadcrumbs';
 import { Icons } from '../icons';
 import SearchInput from '../search-input';
-import ThemeToggle from './ThemeToggle/theme-toggle';
 import { UserNav } from './user-nav';
 
 export const company = {
@@ -249,7 +248,6 @@ export default function AppSidebar({
           </div>
           <div className="flex items-center gap-2 px-4">
             <UserNav />
-            <ThemeToggle />
           </div>
         </header>
         {/* page main content */}

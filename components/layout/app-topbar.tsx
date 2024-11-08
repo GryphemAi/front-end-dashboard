@@ -4,7 +4,7 @@ import { GalleryVerticalEnd } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import * as React from 'react';
-import ThemeToggle from './ThemeToggle/theme-toggle';
+import { UserNav } from './user-nav';
 
 export const company = {
   name: 'Auto Shop',
@@ -16,8 +16,8 @@ export default function AppTopbar({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex h-screen flex-col">
-      <header className="flex h-16 items-center justify-between p-2 bg-sidebar">
-        <div className="flex gap-2 py-2 text-sidebar-accent-foreground items-center">
+      <header className="flex h-16 items-center justify-between bg-sidebar p-2">
+        <div className="flex items-center gap-2 py-2 text-sidebar-accent-foreground">
           <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
             <company.logo className="size-4" />
           </div>
@@ -27,28 +27,17 @@ export default function AppTopbar({ children }: { children: React.ReactNode }) {
         </div>
         <div className="flex items-center gap-4">
           {session?.user ? (
-            <Avatar className="h-8 w-8 rounded-lg">
-              <AvatarImage
-                src={session?.user?.image || ''}
-                alt={session?.user?.name || ''}
-              />
-              <AvatarFallback className="rounded-lg">
-                {session?.user?.name?.slice(0, 2)?.toUpperCase() || 'CN'}
-              </AvatarFallback>
-            </Avatar>
+            <UserNav />
           ) : (
             <>
-              <Link href="/login" className="text-sm">
+              <Link href="/signin" className="text-sm">
                 Login
               </Link>
-              <Link href="/register" className="text-sm">
+              <Link href="/signup" className="text-sm">
                 Registro
               </Link>
             </>
           )}
-          <div className="flex items-center gap-2 px-4">
-            <ThemeToggle />
-          </div>
         </div>
       </header>
       <main className="flex-1">{children}</main>

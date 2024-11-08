@@ -40,7 +40,7 @@ export default function SignInAuthForm() {
     startTransition(() => {
       signIn('credentials', {
         email: data.email,
-        callbackUrl: callbackUrl ?? '/dashboard'
+        callbackUrl: callbackUrl ?? '/'
       });
       toast.success('Logado com sucesso!');
     });

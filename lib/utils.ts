@@ -45,3 +45,37 @@ export function formatBytes(
     sizeType === 'accurate' ? accurateSizes[i] ?? 'Bytest' : sizes[i] ?? 'Bytes'
   }`;
 }
+
+export const formatPhoneNumber = (input?: string): string => {
+  if (!input) return '';
+
+  const cleanedValue: string = input.replace(/\D/g, '');
+  let formattedNumber: string = '';
+
+  if (cleanedValue.length === 12) {
+    formattedNumber = cleanedValue.replace(
+      /(\d{3})(\d{2})(\d{6})/,
+      '($1) $2 $3'
+    );
+  } else {
+    formattedNumber = cleanedValue;
+  }
+
+  return formattedNumber;
+};
+
+export function formatCurrency(input: string | number) {
+  const formattedValue = (Number(input) / 100).toLocaleString('fi-FI', {
+    style: 'currency',
+    currency: 'EUR'
+  });
+
+  return formattedValue;
+}
+
+export function formatCurrencyToNumber(input: string | number) {
+  const numericInput = String(input).replace(/[^\d]/g, '');
+  const value = Number(numericInput);
+
+  return value;
+}

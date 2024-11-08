@@ -51,7 +51,7 @@ export default function SignUpAuthForm() {
     startTransition(() => {
       signIn('credentials', {
         email: data.email,
-        callbackUrl: callbackUrl ?? '/dashboard'
+        callbackUrl: callbackUrl ?? '/'
       });
       toast.success('Registrado com sucesso!');
     });
